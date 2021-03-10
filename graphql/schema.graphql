@@ -1,6 +1,10 @@
 type Query {
-    users: [User!]! @paginate(defaultCount: 10)
-    user(id: ID @eq): User @find
+    users: [User!]! @all
+    # Alternative :
+    # users: [User!]! @field(resolver: "UserQuery@all")
+    user(id: ID! @eq): User @find
+    # Alternative :
+    # user(id: ID!): User @field(resolver: "UserQuery@find")
 }
 
 type User {
@@ -8,3 +12,5 @@ type User {
     name: String!
     email: String!
 }
+
+
